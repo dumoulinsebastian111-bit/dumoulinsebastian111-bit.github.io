@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sebastian Dumoulin — Électronique & systèmes embarqués | BUT GEII</title>
+<meta name="description" content="Étudiant en BUT GEII (parcours ESE) à l'IUT de Montpellier-Sète. Franco-mexicain. Recherche un stage en électronique et systèmes embarqués.">
+<style>
+:root{--bg:#f4f7ff;--card:#fff;--ink:#141a33;--mut:#55607a;--ac:#4361ee;--ac2:#06b6a4;--bd:#dfe5f5}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1040px;margin:auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:9;background:rgba(244,247,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--bd)}
+nav .w{display:flex;align-items:center;gap:18px;height:58px}
+nav b{margin-right:auto}nav a{color:var(--mut);text-decoration:none;font-size:15px}nav a:hover{color:var(--ink)}
+.pill{border:1px solid var(--ink);border-radius:999px;padding:7px 16px;color:var(--ink)!important;font-weight:600}
+@media(max-width:760px){nav a:not(.pill){display:none}}
+h1{font-size:clamp(2.8rem,8vw,5rem);line-height:1;margin:0 0 20px;letter-spacing:-.03em}
+h2{font-size:clamp(1.9rem,4.5vw,2.8rem);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
+section{padding:72px 0;border-top:1px solid var(--bd)}
+.lead{color:var(--mut);font-size:1.15rem;max-width:640px}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;padding:60px 0}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.ph{aspect-ratio:4/5;border-radius:12px;background:linear-gradient(135deg,#dfe7ff,#d4f6f0);border:1px dashed #9fb0ee;display:flex;align-items:center;justify-content:center;color:var(--mut);text-align:center;padding:20px}
+.btn{display:inline-block;border-radius:999px;padding:11px 20px;font-weight:600;font-size:15px;font-family:inherit;text-decoration:none;border:1px solid var(--bd);background:var(--card);color:var(--ink);cursor:pointer;margin:0 8px 8px 0}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;margin-top:28px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:22px}
+.c h3{margin:0 0 8px;font-size:1rem;color:var(--ac)}.c ul{margin:0;padding-left:18px}.c p{margin:0;color:var(--mut);font-size:.95rem}
+.tl{display:grid;grid-template-columns:140px 1fr;gap:20px}
+@media(max-width:600px){.tl{grid-template-columns:1fr;gap:4px}}
+.tl>span{color:var(--ac2);font-weight:600}.tl h3{margin:0}
+.tags span{display:inline-block;border:1px solid var(--bd);background:var(--card);border-radius:6px;padding:2px 10px;margin:4px 6px 0 0;font-size:.85rem;color:var(--mut)}
+.todo{border:1px dashed #9fb0ee;border-radius:6px;padding:2px 8px;color:var(--mut);font-style:italic}
+.photo{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:12px;box-shadow:0 18px 40px -24px rgba(20,26,51,.45)}
+@media(max-width:760px){.photo{max-width:360px}}
+.mail{color:var(--mut);font-size:.95rem;margin:4px 0 0;overflow-wrap:anywhere}
+.pj{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px;margin-top:28px}
+.pj>.c{display:flex;flex-direction:column}.pj>.c>p:last-child{margin-top:auto}
+dialog{border:none;border-radius:16px;max-width:620px;width:92%;padding:28px;background:var(--bg);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog h3{font-size:1.7rem;margin:0 0 4px}dialog h4{margin:22px 0 6px;font-size:.95rem;color:var(--mut)}
+footer{border-top:1px solid var(--bd);padding:28px 0;color:var(--mut);font-size:.9rem}
+/* Osciloscope animé sous le hero */
+.hero{position:relative;padding:60px 0 190px}
+.hero>div{position:relative;z-index:1}
+#scope{position:absolute;left:0;bottom:24px;width:100%;height:150px;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.scope-lbl{position:absolute;left:0;bottom:0;font:12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--mut);letter-spacing:.02em}
+.scope-lbl i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin:0 6px 0 0}
+.scope-lbl b{font-weight:400;margin-right:18px}
+@media(max-width:760px){.hero{padding-bottom:160px}#scope{height:120px}}
+/* Apparition au défilement */
+.js section :is(h2,.lead,.c,p.tags):not(.in){opacity:0;transform:translateY(18px)}
+.js section :is(h2,.lead,.c,p.tags):not(.done){transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.pj>.c{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+.pj>.c:hover{transform:translateY(-4px);box-shadow:0 14px 30px -16px rgba(20,26,51,.28)}
+@media(prefers-reduced-motion:reduce){.js section :is(h2,.lead,.c,p.tags):not(.in){opacity:1;transform:none}.pj>.c,.pj>.c:hover{transition:none;transform:none}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head><body>
+<nav><div class="w"><b>Sebastian Dumoulin</b>
+<a href="#profil">Profil</a><a href="#parcours">Parcours</a><a href="#competences">Compétences</a><a href="#projets">Projets</a><a href="#stage">Stage</a><a href="#contact">Contact</a>
+<a class="pill" href="Dumoulin_Sebastian_CV_stage.pdf" target="_blank" rel="noopener">Mon CV</a></div></nav>
+
+<main class="w">
+<div class="hero"><div>
+<h1>Sebastian<br>Dumoulin</h1>
+<p class="lead">Étudiant en BUT GEII, parcours électronique et systèmes embarqués, à l'IUT de Montpellier-Sète. Franco-mexicain, à la recherche d'un stage de 8 semaines à partir du 3 mai 2027, à Montpellier.</p>
+<a class="btn p" href="#projets">Voir mes projets</a><a class="btn" href="Dumoulin_Sebastian_CV_stage.pdf" target="_blank" rel="noopener">Voir le CV</a><a class="btn" href="https://www.linkedin.com/in/sebastian-dumoulin-9470633b6/" target="_blank" rel="noopener">LinkedIn</a>
+</div><img class="photo" src="photo-sebastian.jpg" alt="Sebastian Dumoulin" width="800" height="1000">
+<canvas id="scope" aria-hidden="true"></canvas>
+<span class="scope-lbl" aria-hidden="true"><b><i style="background:var(--ac2)"></i>CH1 · sinus</b><b><i style="background:var(--ac)"></i>CH2 · PWM</b></span></div>
+
+<section id="profil"><h2>Deux cultures, une même curiosité.</h2>
+<p class="lead">J'ai grandi à Guadalajara et je me forme aujourd'hui à Montpellier. J'aime comprendre comment les choses fonctionnent, de la carte électronique au code qui la fait vivre.</p>
+<div class="g">
+<div class="c"><h3>Qualités</h3><ul><li>Curieux</li><li>Persévérant</li></ul></div>
+<div class="c"><h3>Langues</h3><ul><li>Français : langue maternelle</li><li>Espagnol : langue maternelle</li><li>Anglais : B2</li><li>Allemand, italien : A1</li></ul></div>
+<div class="c"><h3>Centres d'intérêt</h3><ul><li>Escalade</li><li>Natation</li><li>Musique</li><li>Cinéma</li></ul></div>
+<div class="c"><h3>Informations</h3><ul><li>Montpellier</li><li>BUT GEII, parcours ESE</li><li>Stage de 8 semaines dès le 3 mai 2027</li></ul></div>
+</div></section>
+
+<section id="parcours"><h2>Parcours</h2>
+<p class="lead">Une scolarité entre le Mexique et la France.</p>
+<div class="g" style="grid-template-columns:1fr">
+<div class="c tl"><span>2025 – 2028</span><div><h3 style="color:var(--ink)">BUT GEII, parcours ESE</h3><p>IUT Montpellier-Sète · Électronique et systèmes embarqués</p></div></div>
+<div class="c tl"><span>Jusqu'en 2025</span><div><h3 style="color:var(--ink)">Baccalauréat général, mention Bien</h3><p>Spécialités Mathématiques et Physique-Chimie · Colegio Franco Mexicano de Guadalajara, de la maternelle à la terminale</p></div></div>
+</div></section>
+
+<section id="competences"><h2>Ce que je sais faire aujourd'hui.</h2>
+<p class="lead">Des acquis de BUT, que je complète en pratiquant.</p>
+<div class="g">
+<div class="c"><h3>Embarqué</h3><p><b>C · STM32 · bus CAN</b><br>Cartes Nucleo, STM32CubeIDE.</p></div>
+<div class="c"><h3>Mesure</h3><p><b>Banc de mesure</b><br>Oscilloscope, multimètre de précision, générateur de fonctions.</p></div>
+<div class="c"><h3>Logiciels</h3><p><b>KiCad · MATLAB</b><br>Conception et calcul.</p></div>
+</div>
+<p class="tags"><b>Savoir-être</b> &nbsp;<span>Travail en équipe</span><span>Curiosité</span><span>Persévérance</span><span>Adaptabilité</span></p></section>
+
+<section id="projets"><h2>Ce que j'ai réalisé.</h2>
+<p class="lead">Les projets menés dans le cadre du BUT GEII. Ouvrez un dossier pour le détail.</p>
+<div class="pj">
+<div class="c"><div class="tags"><span>S3 · en cours</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Enceinte connectée Bluetooth</h3><p style="color:var(--ac)">Projet tutoré, en binôme.</p><p style="margin:8px 0 12px">Enceinte Bluetooth d'environ 10 W, à base d'un ESP32 et d'un amplificateur intégré.</p><div class="tags"><span>Audio</span><span>Alimentation</span><span>Protection</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d5').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>SAÉ S2</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Robot suiveur de ligne</h3><p style="color:var(--ac)">Zéro microcontrôleur, tout en analogique.</p><p style="margin:8px 0 12px">Conception d'un robot analogique qui suit une ligne grâce à ses capteurs.</p><div class="tags"><span>Robotique</span><span>Capteurs</span><span>Analogique</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d4').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>SAÉ S1</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Testeur de batterie</h3><p style="color:var(--ac)">Capacité, tension, résistance interne.</p><p style="margin:8px 0 12px">Conception d'un testeur de cellules, validé par des mesures à l'oscilloscope et au multimètre de précision.</p><div class="tags"><span>Mesure</span><span>Instrumentation</span><span>Batterie</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d6').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT 1</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Dé électronique</h3><p style="color:var(--ac)">Du schéma au prototype qui fonctionne.</p><p style="margin:8px 0 12px">Conception d'un circuit électronique complet, de l'intégration des composants jusqu'aux tests.</p><div class="tags"><span>Électronique</span><span>PCB</span><span>Hardware</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d2').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT 1</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Carte STM32</h3><p style="color:var(--ac)">Soudure fine et validation en C.</p><p style="margin:8px 0 12px">Assemblage d'une carte STM32 et validation de son fonctionnement en langage C.</p><div class="tags"><span>STM32</span><span>C</span><span>Embarqué</span><span>Soudure</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d3').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Présenter l'IUT aux lycéens</h3>
+<p style="color:var(--ac)">Projet d'équipe pour la JPO du Lycée Jean Jaurès.</p><p style="margin:8px 0 12px">Dossier, diaporama, vidéo et oral pour présenter le BUT et le département GEII.</p>
+<div class="tags"><span>Travail d'équipe</span><span>Communication</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d1').showModal()">Voir le dossier</button></p></div>
+</div></section>
+
+<section id="stage"><h2>À la recherche d'un stage.</h2>
+<p class="lead">Je cherche un stage de 8 semaines à partir du 3 mai 2027, à Montpellier et alentours.</p>
+<div class="g"><div class="c"><h3>Secteurs</h3><p>Électronique, systèmes embarqués, instrumentation, énergie, automatisme industriel, dispositifs médicaux</p></div><div class="c"><h3>Lieu</h3><p>Montpellier et alentours</p></div><div class="c"><h3>Dates</h3><p>8 semaines à partir du 3 mai 2027</p></div></div></section>
+
+<section id="contact"><h2>Me contacter.</h2>
+<p class="lead">Une question, une opportunité de stage ? Écrivez-moi.</p>
+<p><a class="btn p" href="mailto:sebastian.dumoulin-gutierrez@etu.umontpellier.fr">Envoyer un e-mail</a><a class="btn" href="Dumoulin_Sebastian_CV_stage.pdf" target="_blank" rel="noopener">CV (PDF)</a><a class="btn" href="https://www.linkedin.com/in/sebastian-dumoulin-9470633b6/" target="_blank" rel="noopener">LinkedIn</a></p>
+<p class="mail">sebastian.dumoulin-gutierrez@etu.umontpellier.fr</p></section>
+</main>
+
+<footer><div class="w">© 2026 Sebastian Dumoulin · BUT GEII, IUT Montpellier-Sète</div></footer>
+
+<dialog id="d1"><h3>Présenter l'IUT aux lycéens</h3><p style="color:var(--mut);margin:0">Projet d'équipe mené en BUT GEII, à l'IUT de Montpellier-Sète.</p>
+<h4>Ce que j'ai fait</h4><ul><li>Rédaction de la partie « Département GEII » du dossier.</li><li>Contribution au diaporama, à la vidéo et à la présentation orale.</li></ul>
+<h4>Pièces du dossier</h4><p class="todo">Dossier écrit : à déposer</p>
+<h4>Compétences</h4><div class="tags"><span>Travail d'équipe</span><span>Communication</span><span>Synthèse</span></div>
+<p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d2"><h3>Dé électronique</h3><p style="color:var(--mut);margin:0">Projet mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Conception d'un circuit électronique complet, de l'intégration des composants jusqu'aux tests.</p><h4>Ce que j'ai fait</h4><ul><li>Conception du circuit électronique complet.</li><li>Intégration des composants sur la carte.</li><li>Tests de fonctionnement du montage.</li><li>Identification et correction des bugs électroniques.</li></ul><h4>Technologies</h4><div class="tags"><span>Électronique</span><span>PCB</span><span>Hardware</span></div><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d3"><h3>Carte STM32</h3><p style="color:var(--mut);margin:0">Projet mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Assemblage d'une carte STM32 et validation de son fonctionnement en langage C.</p><h4>Ce que j'ai fait</h4><ul><li>Assemblage et soudure des composants de la carte.</li><li>Contrôle des connexions avant la mise sous tension.</li><li>Validation du fonctionnement en langage C.</li></ul><h4>Technologies</h4><div class="tags"><span>STM32</span><span>C</span><span>Embarqué</span><span>Soudure</span></div><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d4"><h3>Robot suiveur de ligne</h3><p style="color:var(--mut);margin:0">SAÉ de S2 (février – avril 2026), menée en équipe à l'IUT de Montpellier-Sète.</p><p>Conception d'un robot analogique qui suit une ligne grâce à ses capteurs.</p><h4>Ce que j'ai fait</h4><ul><li>Conception d'un robot entièrement analogique.</li><li>Intégration et câblage des capteurs de ligne.</li><li>Réglages électroniques fins du suivi de trajectoire.</li><li>Tests sur prototype jusqu'à la validation finale.</li></ul><h4>Technologies</h4><div class="tags"><span>Robotique</span><span>Capteurs</span><span>Analogique</span></div><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d5"><h3>Enceinte connectée Bluetooth</h3><p style="color:var(--mut);margin:0">Projet tutoré de S3, en binôme, à l'IUT de Montpellier-Sète. En cours.</p><p>Enceinte Bluetooth d'environ 10 W, à base d'un ESP32 et d'un amplificateur intégré.</p><h4>Ce que j'ai fait</h4><ul><li>Conception de l'enceinte, en binôme.</li><li>Responsable de la protection contre l'inversion de polarité de l'alimentation.</li></ul><h4>Technologies</h4><div class="tags"><span>Alimentation</span><span>Amplificateur audio</span><span>KiCad</span></div><h4>Pièces du dossier</h4><p class="todo">Projet en cours : schémas, photos et rapport à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d6"><h3>Testeur de batterie</h3><p style="color:var(--mut);margin:0">SAÉ de S1 (2025), à l'IUT de Montpellier-Sète.</p><p>Conception d'un testeur de cellules de batterie.</p><h4>Ce que j'ai fait</h4><ul><li>Conception d'un testeur mesurant la capacité, la tension et la résistance interne d'une cellule.</li><li>Mesures à l'oscilloscope et au multimètre de précision.</li><li>Rédaction du rapport technique.</li></ul><h4>Technologies</h4><div class="tags"><span>Mesure</span><span>Instrumentation</span><span>Batterie</span></div><h4>Pièces du dossier</h4><p class="todo">Rapport technique : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<script>
+(function(){
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Apparition des blocs au défilement */
+var els=document.querySelectorAll('section h2, section .lead, section .c, section p.tags');
+function fin(el){el.classList.add('done');el.style.transitionDelay=''}
+if('IntersectionObserver' in window&&!reduce){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var el=e.target;el.classList.add('in');io.unobserve(el);
+    setTimeout(function(){fin(el)},1100);
+  })},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){
+    if(el.classList.contains('c')){var i=Array.prototype.indexOf.call(el.parentElement.children,el);el.style.transitionDelay=Math.min(i*80,320)+'ms'}
+    io.observe(el);
+  });
+}else{els.forEach(function(el){el.classList.add('in');fin(el)})}
+
+/* Oscilloscope : CH1 sinus, CH2 PWM dont le rapport cyclique varie */
+var cv=document.getElementById('scope');
+if(!cv||!cv.getContext)return;
+var ctx=cv.getContext('2d'),W=0,H=0,css=getComputedStyle(document.documentElement);
+var C1=css.getPropertyValue('--ac2').trim()||'#06b6a4',C2=css.getPropertyValue('--ac').trim()||'#4361ee',GR=css.getPropertyValue('--bd').trim()||'#dfe5f5';
+function size(){
+  var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);
+  W=r.width;H=r.height;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);
+}
+function sinus(x,t){return H*.3+H*.2*Math.sin(x/(W>600?46:34)-t*.6)}
+function duty(t){return .5+.3*Math.sin(t*.7)}
+function pwm(x,t){var P=W>600?150:110,ph=((x+t*20)%P+P)%P/P;return ph<duty(t)?H*.6:H*.86}
+function grille(){
+  ctx.globalAlpha=1;ctx.strokeStyle=GR;ctx.lineWidth=1;ctx.setLineDash([2,5]);ctx.beginPath();
+  for(var i=1;i<10;i++){var x=Math.round(W*i/10)+.5;ctx.moveTo(x,0);ctx.lineTo(x,H)}
+  for(var j=1;j<4;j++){var y=Math.round(H*j/4)+.5;ctx.moveTo(0,y);ctx.lineTo(W,y)}
+  ctx.stroke();ctx.setLineDash([]);
+}
+var PER=3.4,GAP=.12;
+function trace(f,col,t,sweep,carre){
+  ctx.strokeStyle=col;ctx.lineWidth=2;ctx.lineJoin='round';ctx.lineCap='round';
+  var step=2,chunk=8,decay=W*.45,L=W*(1+GAP);
+  for(var x0=0;x0<W;x0+=chunk){
+    var a;
+    if(sweep==null)a=.6;else{var d=sweep-x0;if(d<0)d+=L;a=.14+.76*Math.exp(-d/decay)}
+    ctx.globalAlpha=a;ctx.beginPath();
+    var px=x0,py=f(x0,t);ctx.moveTo(px,py);
+    for(var x=x0+step;x<=Math.min(x0+chunk,W);x+=step){var y=f(x,t);if(carre&&y!==py){ctx.lineTo(x,py)}ctx.lineTo(x,y);py=y}
+    ctx.stroke();
+  }
+  if(sweep!=null&&sweep<W){
+    ctx.globalAlpha=1;ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=12;
+    ctx.beginPath();ctx.arc(sweep,f(sweep,t),3.2,0,7);ctx.fill();ctx.shadowBlur=0;
+  }
+}
+function dessine(t,sweep){ctx.clearRect(0,0,W,H);grille();trace(sinus,C1,t,sweep,false);trace(pwm,C2,t,sweep,true);ctx.globalAlpha=1}
+size();
+if(reduce){dessine(1.2,null);window.addEventListener('resize',function(){size();dessine(1.2,null)});return}
+var vis=true,raf=0,t0=performance.now();
+function boucle(now){
+  var t=(now-t0)/1000,sweep=(t%PER)/PER*W*(1+GAP);
+  dessine(t,sweep);raf=vis?requestAnimationFrame(boucle):0;
+}
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(boucle)}).observe(cv);
+}
+raf=requestAnimationFrame(boucle);
+window.addEventListener('resize',size);
+})();
+</script>
+</body></html>
