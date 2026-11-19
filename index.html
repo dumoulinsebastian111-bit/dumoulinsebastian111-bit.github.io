@@ -5,14 +5,22 @@
 <meta name="description" content="Étudiant en BUT GEII (parcours ESE) à l'IUT de Montpellier-Sète. Franco-mexicain. Recherche un stage en électronique et systèmes embarqués.">
 <style>
 :root{--bg:#f4f7ff;--card:#fff;--ink:#141a33;--mut:#55607a;--ac:#4361ee;--ac2:#06b6a4;--bd:#dfe5f5}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .w{max-width:1040px;margin:auto;padding:0 22px}
 nav{position:sticky;top:0;z-index:9;background:rgba(244,247,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--bd)}
 nav .w{display:flex;align-items:center;gap:18px;height:58px}
-nav b{margin-right:auto}nav a{color:var(--mut);text-decoration:none;font-size:15px}nav a:hover{color:var(--ink)}
+.home{margin-right:auto;font-weight:700;font-size:17px;color:var(--ink)!important;white-space:nowrap}.links{display:flex;gap:18px}nav a{color:var(--mut);text-decoration:none;font-size:15px}nav a:hover{color:var(--ink)}
 .pill{border:1px solid var(--ink);border-radius:999px;padding:7px 16px;color:var(--ink)!important;font-weight:600}
-@media(max-width:760px){nav a:not(.pill){display:none}}
+@media(max-width:900px){nav .w{flex-wrap:wrap;height:auto;padding-top:10px;gap:8px 14px}.links{order:3;width:100%;overflow-x:auto;gap:18px;padding:2px 32px 10px 0;-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent);scrollbar-width:none;-webkit-overflow-scrolling:touch}.links::-webkit-scrollbar{display:none}.links a{white-space:nowrap}}
+/* Une seule rubrique visible à la fois (choisie par le menu) */
+.js .vue{display:none}
+html[data-vue="accueil"] #accueil{display:grid}html[data-vue="profil"] #profil{display:block}html[data-vue="parcours"] #parcours{display:block}html[data-vue="competences"] #competences{display:block}html[data-vue="certification"] #certification{display:block}html[data-vue="projets"] #projets{display:block}html[data-vue="stage"] #stage{display:block}html[data-vue="contact"] #contact{display:block}
+html[data-vue="profil"] nav a[href="#profil"]{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--ac);text-decoration-thickness:2px;text-underline-offset:7px}html[data-vue="parcours"] nav a[href="#parcours"]{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--ac);text-decoration-thickness:2px;text-underline-offset:7px}html[data-vue="competences"] nav a[href="#competences"]{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--ac);text-decoration-thickness:2px;text-underline-offset:7px}html[data-vue="certification"] nav a[href="#certification"]{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--ac);text-decoration-thickness:2px;text-underline-offset:7px}html[data-vue="projets"] nav a[href="#projets"]{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--ac);text-decoration-thickness:2px;text-underline-offset:7px}html[data-vue="stage"] nav a[href="#stage"]{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--ac);text-decoration-thickness:2px;text-underline-offset:7px}html[data-vue="contact"] nav a[href="#contact"]{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--ac);text-decoration-thickness:2px;text-underline-offset:7px}
+.js section{border-top:0;padding-top:52px}.js main{min-height:calc(100vh - 150px)}
+.suite{margin:44px 0 0}.suite a{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--ac);text-decoration:none;border:1px solid var(--bd);border-radius:999px;padding:10px 18px;background:var(--card)}
+.suite a:hover{border-color:var(--ac)}
 h1{font-size:clamp(2.8rem,8vw,5rem);line-height:1;margin:0 0 20px;letter-spacing:-.03em}
 h2{font-size:clamp(1.9rem,4.5vw,2.8rem);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
 section{padding:72px 0;border-top:1px solid var(--bd)}
@@ -27,14 +35,34 @@ section{padding:72px 0;border-top:1px solid var(--bd)}
 .c h3{margin:0 0 8px;font-size:1rem;color:var(--ac)}.c ul{margin:0;padding-left:18px}.c p{margin:0;color:var(--mut);font-size:.95rem}
 .tl{display:grid;grid-template-columns:140px 1fr;gap:20px}
 @media(max-width:600px){.tl{grid-template-columns:1fr;gap:4px}}
-.tl>span{color:var(--ac2);font-weight:600}.tl h3{margin:0}
+.tl>span{color:var(--ac2);font-weight:600}
+.tl.img{grid-template-columns:140px 1fr 240px;align-items:center}.tl>div{min-width:0}
+.tl-img{display:block;width:100%;height:auto;aspect-ratio:368/145;object-fit:cover;border-radius:10px;max-width:100%}
+@media(max-width:760px){.tl.img{grid-template-columns:1fr;gap:4px}.tl.img .tl-img{order:-1;margin-bottom:12px}}.tl h3{margin:0}
 .tags span{display:inline-block;border:1px solid var(--bd);background:var(--card);border-radius:6px;padding:2px 10px;margin:4px 6px 0 0;font-size:.85rem;color:var(--mut)}
 .todo{border:1px dashed #9fb0ee;border-radius:6px;padding:2px 8px;color:var(--mut);font-style:italic}
 .photo{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:12px;box-shadow:0 18px 40px -24px rgba(20,26,51,.45)}
 @media(max-width:760px){.photo{max-width:360px}}
 .mail{color:var(--mut);font-size:.95rem;margin:4px 0 0;overflow-wrap:anywhere}
+.cert{display:flex;gap:20px;align-items:center;margin-top:28px;max-width:680px}
+.cert-sym{flex:none;width:78px;height:78px;border-radius:14px;display:grid;place-items:center;background:#eef1ff;border:1px solid #cdd6fb;color:var(--ac);font:700 1.25rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.02em}
+.cert>div:last-child{min-width:0}.cert h3{margin:0 0 6px;color:var(--ink);font-size:1.15rem}
+.cert .meta{margin-top:10px;font-size:.85rem;font-weight:600;color:var(--ac2)}
+/* Galerie photos des dossiers */
+.gal{position:relative;border-radius:12px;overflow:hidden;background:#e8edfb;aspect-ratio:3/2;max-width:100%;margin-top:4px}
+.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .7s ease}
+.gal img.on{opacity:1}
+.gal .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:7px;justify-content:center}
+.gal .dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:rgba(20,26,51,.25);cursor:pointer}
+.gal .dots button.on{background:var(--ac)}
+.gal .dots button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.cap{margin:8px 0 0;font-size:.88rem;color:var(--mut)}
+dialog h3:focus{outline:none}
+.grp{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:48px 0 0;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.grp h3{margin:0;font-size:1.35rem;letter-spacing:-.01em}.grp span{color:var(--mut);font-size:.9rem;white-space:nowrap}
+.grp+.pj{margin-top:20px}
 .pj{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px;margin-top:28px}
-.pj>.c{display:flex;flex-direction:column}.pj>.c>p:last-child{margin-top:auto}
+.pj>.c{display:flex;flex-direction:column}.pj>.c:last-child:nth-child(odd){grid-column:1/-1}.pj>.c>p:last-child{margin-top:auto}
 dialog{border:none;border-radius:16px;max-width:620px;width:92%;padding:28px;background:var(--bg);color:var(--ink)}
 dialog::backdrop{background:rgba(0,0,0,.5)}
 dialog h3{font-size:1.7rem;margin:0 0 4px}dialog h4{margin:22px 0 6px;font-size:.95rem;color:var(--mut)}
@@ -54,14 +82,12 @@ footer{border-top:1px solid var(--bd);padding:28px 0;color:var(--mut);font-size:
 .pj>.c:hover{transform:translateY(-4px);box-shadow:0 14px 30px -16px rgba(20,26,51,.28)}
 @media(prefers-reduced-motion:reduce){.js section :is(h2,.lead,.c,p.tags):not(.in){opacity:1;transform:none}.pj>.c,.pj>.c:hover{transition:none;transform:none}}
 </style>
-<script>document.documentElement.classList.add('js')</script>
+<script>(function(){var d=document.documentElement,v=["accueil", "profil", "parcours", "competences", "certification", "projets", "stage", "contact"];d.classList.add('js');function centre(){var a=document.querySelector('.links a[href="#'+d.getAttribute('data-vue')+'"]'),l=a&&a.parentNode;if(l&&l.scrollWidth>l.clientWidth)l.scrollLeft=a.offsetLeft-(l.clientWidth-a.offsetWidth)/2}function vue(){var h=decodeURIComponent(location.hash.slice(1));d.setAttribute('data-vue',v.indexOf(h)>=0?h:'accueil');if(document.readyState!=='loading')centre()}vue();document.addEventListener('DOMContentLoaded',centre);window.addEventListener('hashchange',function(){vue();window.scrollTo({top:0,left:0,behavior:'instant'})})})()</script>
 </head><body>
-<nav><div class="w"><b>Sebastian Dumoulin</b>
-<a href="#profil">Profil</a><a href="#parcours">Parcours</a><a href="#competences">Compétences</a><a href="#projets">Projets</a><a href="#stage">Stage</a><a href="#contact">Contact</a>
-<a class="pill" href="Dumoulin_Sebastian_CV_stage.pdf" target="_blank" rel="noopener">Mon CV</a></div></nav>
+<nav><div class="w"><a class="home" href="#accueil">Sebastian Dumoulin</a><div class="links"><a href="#profil">Profil</a><a href="#parcours">Parcours</a><a href="#competences">Compétences</a><a href="#certification">Certification</a><a href="#projets">Projets</a><a href="#stage">Stage</a><a href="#contact">Contact</a></div><a class="pill" href="Dumoulin_Sebastian_CV_stage.pdf" target="_blank" rel="noopener">Mon CV</a></div></nav>
 
 <main class="w">
-<div class="hero"><div>
+<div class="hero vue" id="accueil"><div>
 <h1>Sebastian<br>Dumoulin</h1>
 <p class="lead">Étudiant en BUT GEII, parcours électronique et systèmes embarqués, à l'IUT de Montpellier-Sète. Franco-mexicain, à la recherche d'un stage de 8 semaines à partir du 3 mai 2027, à Montpellier.</p>
 <a class="btn p" href="#projets">Voir mes projets</a><a class="btn" href="Dumoulin_Sebastian_CV_stage.pdf" target="_blank" rel="noopener">Voir le CV</a><a class="btn" href="https://www.linkedin.com/in/sebastian-dumoulin-9470633b6/" target="_blank" rel="noopener">LinkedIn</a>
@@ -69,52 +95,71 @@ footer{border-top:1px solid var(--bd);padding:28px 0;color:var(--mut);font-size:
 <canvas id="scope" aria-hidden="true"></canvas>
 <span class="scope-lbl" aria-hidden="true"><b><i style="background:var(--ac2)"></i>CH1 · sinus</b><b><i style="background:var(--ac)"></i>CH2 · PWM</b></span></div>
 
-<section id="profil"><h2>Deux cultures, une même curiosité.</h2>
+<section class="vue" id="profil"><h2>Deux cultures, une même curiosité.</h2>
 <p class="lead">J'ai grandi à Guadalajara et je me forme aujourd'hui à Montpellier. J'aime comprendre comment les choses fonctionnent, de la carte électronique au code qui la fait vivre.</p>
 <div class="g">
 <div class="c"><h3>Qualités</h3><ul><li>Curieux</li><li>Persévérant</li></ul></div>
 <div class="c"><h3>Langues</h3><ul><li>Français : langue maternelle</li><li>Espagnol : langue maternelle</li><li>Anglais : B2</li><li>Allemand, italien : A1</li></ul></div>
 <div class="c"><h3>Centres d'intérêt</h3><ul><li>Escalade</li><li>Natation</li><li>Musique</li><li>Cinéma</li></ul></div>
 <div class="c"><h3>Informations</h3><ul><li>Montpellier</li><li>BUT GEII, parcours ESE</li><li>Stage de 8 semaines dès le 3 mai 2027</li></ul></div>
-</div></section>
+</div><p class="suite"><a href="#parcours">Suivant : Parcours →</a></p></section>
 
-<section id="parcours"><h2>Parcours</h2>
+<section class="vue" id="parcours"><h2>Parcours</h2>
 <p class="lead">Une scolarité entre le Mexique et la France.</p>
 <div class="g" style="grid-template-columns:1fr">
-<div class="c tl"><span>2025 – 2028</span><div><h3 style="color:var(--ink)">BUT GEII, parcours ESE</h3><p>IUT Montpellier-Sète · Électronique et systèmes embarqués</p></div></div>
-<div class="c tl"><span>Jusqu'en 2025</span><div><h3 style="color:var(--ink)">Baccalauréat général, mention Bien</h3><p>Spécialités Mathématiques et Physique-Chimie · Colegio Franco Mexicano de Guadalajara, de la maternelle à la terminale</p></div></div>
-</div></section>
+<div class="c tl img"><span>2025 – 2028</span><div><h3 style="color:var(--ink)">BUT GEII, parcours ESE</h3><p>IUT Montpellier-Sète · Électronique et systèmes embarqués</p></div><img class="tl-img" src="iut-montpellier.jpg" alt="L'entrée de l'IUT de Montpellier" width="479" height="189"></div>
+<div class="c tl img"><span>Jusqu'en 2025</span><div><h3 style="color:var(--ink)">Baccalauréat général, mention Bien</h3><p>Spécialités Mathématiques et Physique-Chimie · Colegio Franco Mexicano de Guadalajara, de la maternelle à la terminale</p></div><img class="tl-img" src="colegio-franco-mexicano.jpg" alt="Le Colegio Franco Mexicano de Guadalajara" width="368" height="145"></div>
+</div><p class="suite"><a href="#competences">Suivant : Compétences →</a></p></section>
 
-<section id="competences"><h2>Ce que je sais faire aujourd'hui.</h2>
+<section class="vue" id="competences"><h2>Ce que je sais faire aujourd'hui.</h2>
 <p class="lead">Des acquis de BUT, que je complète en pratiquant.</p>
 <div class="g">
 <div class="c"><h3>Embarqué</h3><p><b>C · STM32 · bus CAN</b><br>Cartes Nucleo, STM32CubeIDE.</p></div>
 <div class="c"><h3>Mesure</h3><p><b>Banc de mesure</b><br>Oscilloscope, multimètre de précision, générateur de fonctions.</p></div>
 <div class="c"><h3>Logiciels</h3><p><b>KiCad · MATLAB</b><br>Conception et calcul.</p></div>
 </div>
-<p class="tags"><b>Savoir-être</b> &nbsp;<span>Travail en équipe</span><span>Curiosité</span><span>Persévérance</span><span>Adaptabilité</span></p></section>
+<p class="tags"><b>Savoir-être</b> &nbsp;<span>Travail en équipe</span><span>Curiosité</span><span>Persévérance</span><span>Adaptabilité</span></p><p class="suite"><a href="#certification">Suivant : Certification →</a></p></section>
 
-<section id="projets"><h2>Ce que j'ai réalisé.</h2>
-<p class="lead">Les projets menés dans le cadre du BUT GEII. Ouvrez un dossier pour le détail.</p>
+<section class="vue" id="certification"><h2>Certification.</h2>
+<div class="c cert"><div class="cert-sym" aria-hidden="true">B1V</div><div><h3>Habilitation B1V — mesurage</h3><p>Habilitation électrique pour les interventions de mesurage en basse tension.</p><p class="meta">Obtenue en BUT 1 · <span style="white-space:nowrap">2025-2026</span></p></div></div><p class="suite"><a href="#projets">Suivant : Projets →</a></p></section>
+
+<section class="vue" id="projets"><h2>Ce que j'ai réalisé.</h2>
+<p class="lead">Les projets menés dans le cadre du BUT GEII, classés par compétence. Ouvrez un dossier pour le détail.</p>
+<div class="grp"><h3>Concevoir &amp; Implanter</h3><span>9 projets</span></div>
 <div class="pj">
-<div class="c"><div class="tags"><span>S3 · en cours</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Enceinte connectée Bluetooth</h3><p style="color:var(--ac)">Projet tutoré, en binôme.</p><p style="margin:8px 0 12px">Enceinte Bluetooth d'environ 10 W, à base d'un ESP32 et d'un amplificateur intégré.</p><div class="tags"><span>Audio</span><span>Alimentation</span><span>Protection</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d5').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>S3 · en cours</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Enceinte connectée Bluetooth</h3><p style="color:var(--ac)">Projet tutoré, en binôme avec Eddie Fisher.</p><p style="margin:8px 0 12px">Enceinte Bluetooth d'environ 10 W, à base d'un ESP32 et d'un amplificateur intégré.</p><div class="tags"><span>Audio</span><span>Alimentation</span><span>Protection</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d5').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>SAÉ S3 · en cours</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Shield Moteur</h3><p style="color:var(--ac)">Projet en cours, en binôme.</p><p style="margin:8px 0 12px">Carte d'extension pour Nucleo F303RE qui commande un moteur à courant continu.</p><div class="tags"><span>STM32</span><span>Bus CAN</span><span>KiCad</span><span>Moteur DC</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d7').showModal()">Voir le dossier</button></p></div>
 <div class="c"><div class="tags"><span>SAÉ S2</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Robot suiveur de ligne</h3><p style="color:var(--ac)">Zéro microcontrôleur, tout en analogique.</p><p style="margin:8px 0 12px">Conception d'un robot analogique qui suit une ligne grâce à ses capteurs.</p><div class="tags"><span>Robotique</span><span>Capteurs</span><span>Analogique</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d4').showModal()">Voir le dossier</button></p></div>
 <div class="c"><div class="tags"><span>SAÉ S1</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Testeur de batterie</h3><p style="color:var(--ac)">Capacité, tension, résistance interne.</p><p style="margin:8px 0 12px">Conception d'un testeur de cellules, validé par des mesures à l'oscilloscope et au multimètre de précision.</p><div class="tags"><span>Mesure</span><span>Instrumentation</span><span>Batterie</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d6').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Capteur de température PT100</h3><p style="color:var(--ac)">Mesurer une température avec une sonde PT100.</p><p style="margin:8px 0 12px">Création d'une carte fille qui met en forme le signal d'une sonde PT100 pour qu'un microcontrôleur puisse le lire.</p><div class="tags"><span>KiCad</span><span>STM32CubeIDE</span><span>Capteur</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d11').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT 1</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Soudage de la carte Jipada</h3><p style="color:var(--ac)">Première carte assemblée en BUT GEII.</p><p style="margin:8px 0 12px">Contrôle, soudure et test d'une carte qui relie un microcontrôleur à des cartes filles.</p><div class="tags"><span>Soudure</span><span>Multimètre</span><span>Carte d'interface</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d8').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Tracker de lumière</h3><p style="color:var(--ac)">Comprendre un système, puis le programmer.</p><p style="margin:8px 0 12px">Étude d'un tracker qui suit la lumière, puis écriture du programme qui le commande.</p><div class="tags"><span>Programmation</span><span>Analyse de système</span><span>Oral</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d9').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Transmission d'un mot de 4 bits</h3><p style="color:var(--ac)">Détecter et corriger une erreur grâce au code de Hamming.</p><p style="margin:8px 0 12px">Simulation d'une liaison sur 4 bits, d'une erreur de transmission, puis de sa correction.</p><div class="tags"><span>FPGA</span><span>Quartus</span><span>Code de Hamming</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d10').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Commande de malaxeur</h3><p style="color:var(--ac)">Automatisme industriel sous Control Expert.</p><p style="margin:8px 0 12px">Interface de commande pour régler la vitesse, le sens de rotation et la position d'arrêt d'un malaxeur, avec affichage de la température.</p><div class="tags"><span>Automatisme</span><span>Control Expert</span><span>Interface de commande</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d12').showModal()">Voir le dossier</button></p></div>
+</div>
+<div class="grp"><h3>Vérifier &amp; Maintenir</h3><span>3 projets</span></div>
+<div class="pj">
+<div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Transmission infrarouge</h3><p style="color:var(--ac)">Dépannage méthodique d'une carte.</p><p style="margin:8px 0 12px">Recherche de panne sur un encodeur infrarouge, jusqu'au remplacement du composant défectueux.</p><div class="tags"><span>Dépannage</span><span>Oscilloscope</span><span>Multimètre</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d13').showModal()">Voir le dossier</button></p></div>
+<div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Installation électrique d'une habitation</h3><p style="color:var(--ac)">Conformité à la norme NF C 15-100.</p><p style="margin:8px 0 12px">Étude du câblage électrique d'un logement et contrôle de sa conformité, avec un rapport.</p><div class="tags"><span>NF C 15-100</span><span>QElectroTech</span><span>Rapport</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d14').showModal()">Voir le dossier</button></p></div>
 <div class="c"><div class="tags"><span>BUT 1</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Dé électronique</h3><p style="color:var(--ac)">Du schéma au prototype qui fonctionne.</p><p style="margin:8px 0 12px">Conception d'un circuit électronique complet, de l'intégration des composants jusqu'aux tests.</p><div class="tags"><span>Électronique</span><span>PCB</span><span>Hardware</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d2').showModal()">Voir le dossier</button></p></div>
+</div>
+<div class="grp"><h3>Autres projets</h3><span>2 projets</span></div>
+<div class="pj">
 <div class="c"><div class="tags"><span>BUT 1</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Carte STM32</h3><p style="color:var(--ac)">Soudure fine et validation en C.</p><p style="margin:8px 0 12px">Assemblage d'une carte STM32 et validation de son fonctionnement en langage C.</p><div class="tags"><span>STM32</span><span>C</span><span>Embarqué</span><span>Soudure</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d3').showModal()">Voir le dossier</button></p></div>
 <div class="c"><div class="tags"><span>BUT GEII</span></div><h3 style="color:var(--ink);font-size:1.3rem;margin-top:10px">Présenter l'IUT aux lycéens</h3>
 <p style="color:var(--ac)">Projet d'équipe pour la JPO du Lycée Jean Jaurès.</p><p style="margin:8px 0 12px">Dossier, diaporama, vidéo et oral pour présenter le BUT et le département GEII.</p>
 <div class="tags"><span>Travail d'équipe</span><span>Communication</span></div><p><button class="btn" style="margin-top:14px" onclick="document.getElementById('d1').showModal()">Voir le dossier</button></p></div>
-</div></section>
+</div>
+<p class="suite"><a href="#stage">Suivant : Stage →</a></p></section>
 
-<section id="stage"><h2>À la recherche d'un stage.</h2>
+<section class="vue" id="stage"><h2>À la recherche d'un stage.</h2>
 <p class="lead">Je cherche un stage de 8 semaines à partir du 3 mai 2027, à Montpellier et alentours.</p>
-<div class="g"><div class="c"><h3>Secteurs</h3><p>Électronique, systèmes embarqués, instrumentation, énergie, automatisme industriel, dispositifs médicaux</p></div><div class="c"><h3>Lieu</h3><p>Montpellier et alentours</p></div><div class="c"><h3>Dates</h3><p>8 semaines à partir du 3 mai 2027</p></div></div></section>
+<div class="g"><div class="c"><h3>Secteurs</h3><p>Électronique, systèmes embarqués, instrumentation, énergie, automatisme industriel, dispositifs médicaux</p></div><div class="c"><h3>Lieu</h3><p>Montpellier et alentours</p></div><div class="c"><h3>Dates</h3><p>8 semaines à partir du 3 mai 2027</p></div></div><p class="suite"><a href="#contact">Suivant : Contact →</a></p></section>
 
-<section id="contact"><h2>Me contacter.</h2>
+<section class="vue" id="contact"><h2>Me contacter.</h2>
 <p class="lead">Une question, une opportunité de stage ? Écrivez-moi.</p>
 <p><a class="btn p" href="mailto:sebastian.dumoulin-gutierrez@etu.umontpellier.fr">Envoyer un e-mail</a><a class="btn" href="Dumoulin_Sebastian_CV_stage.pdf" target="_blank" rel="noopener">CV (PDF)</a><a class="btn" href="https://www.linkedin.com/in/sebastian-dumoulin-9470633b6/" target="_blank" rel="noopener">LinkedIn</a></p>
-<p class="mail">sebastian.dumoulin-gutierrez@etu.umontpellier.fr</p></section>
+<p class="mail">sebastian.dumoulin-gutierrez@etu.umontpellier.fr</p><p class="suite"><a href="#accueil">← Retour à l'accueil</a></p></section>
 </main>
 
 <footer><div class="w">© 2026 Sebastian Dumoulin · BUT GEII, IUT Montpellier-Sète</div></footer>
@@ -124,11 +169,19 @@ footer{border-top:1px solid var(--bd);padding:28px 0;color:var(--mut);font-size:
 <h4>Pièces du dossier</h4><p class="todo">Dossier écrit : à déposer</p>
 <h4>Compétences</h4><div class="tags"><span>Travail d'équipe</span><span>Communication</span><span>Synthèse</span></div>
 <p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
-<dialog id="d2"><h3>Dé électronique</h3><p style="color:var(--mut);margin:0">Projet mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Conception d'un circuit électronique complet, de l'intégration des composants jusqu'aux tests.</p><h4>Ce que j'ai fait</h4><ul><li>Conception du circuit électronique complet.</li><li>Intégration des composants sur la carte.</li><li>Tests de fonctionnement du montage.</li><li>Identification et correction des bugs électroniques.</li></ul><h4>Technologies</h4><div class="tags"><span>Électronique</span><span>PCB</span><span>Hardware</span></div><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d2"><h3>Dé électronique</h3><p style="color:var(--mut);margin:0">Projet mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Conception d'un circuit électronique complet, de l'intégration des composants jusqu'aux tests.</p><h4>Ce que j'ai fait</h4><ul><li>Conception du circuit électronique complet.</li><li>Intégration des composants sur la carte.</li><li>Tests de fonctionnement du montage.</li><li>Identification et correction des bugs électroniques.</li></ul><h4>Technologies</h4><div class="tags"><span>Électronique</span><span>PCB</span><span>Hardware</span></div><h4>Photos</h4><div class="gal"><img src="de-electronique.jpg" alt="La carte du dé électronique." width="266" height="188"></div><p class="cap">La carte du dé électronique.</p><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
 <dialog id="d3"><h3>Carte STM32</h3><p style="color:var(--mut);margin:0">Projet mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Assemblage d'une carte STM32 et validation de son fonctionnement en langage C.</p><h4>Ce que j'ai fait</h4><ul><li>Assemblage et soudure des composants de la carte.</li><li>Contrôle des connexions avant la mise sous tension.</li><li>Validation du fonctionnement en langage C.</li></ul><h4>Technologies</h4><div class="tags"><span>STM32</span><span>C</span><span>Embarqué</span><span>Soudure</span></div><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
-<dialog id="d4"><h3>Robot suiveur de ligne</h3><p style="color:var(--mut);margin:0">SAÉ de S2 (février – avril 2026), menée en équipe à l'IUT de Montpellier-Sète.</p><p>Conception d'un robot analogique qui suit une ligne grâce à ses capteurs.</p><h4>Ce que j'ai fait</h4><ul><li>Conception d'un robot entièrement analogique.</li><li>Intégration et câblage des capteurs de ligne.</li><li>Réglages électroniques fins du suivi de trajectoire.</li><li>Tests sur prototype jusqu'à la validation finale.</li></ul><h4>Technologies</h4><div class="tags"><span>Robotique</span><span>Capteurs</span><span>Analogique</span></div><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
-<dialog id="d5"><h3>Enceinte connectée Bluetooth</h3><p style="color:var(--mut);margin:0">Projet tutoré de S3, en binôme, à l'IUT de Montpellier-Sète. En cours.</p><p>Enceinte Bluetooth d'environ 10 W, à base d'un ESP32 et d'un amplificateur intégré.</p><h4>Ce que j'ai fait</h4><ul><li>Conception de l'enceinte, en binôme.</li><li>Responsable de la protection contre l'inversion de polarité de l'alimentation.</li></ul><h4>Technologies</h4><div class="tags"><span>Alimentation</span><span>Amplificateur audio</span><span>KiCad</span></div><h4>Pièces du dossier</h4><p class="todo">Projet en cours : schémas, photos et rapport à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
-<dialog id="d6"><h3>Testeur de batterie</h3><p style="color:var(--mut);margin:0">SAÉ de S1 (2025), à l'IUT de Montpellier-Sète.</p><p>Conception d'un testeur de cellules de batterie.</p><h4>Ce que j'ai fait</h4><ul><li>Conception d'un testeur mesurant la capacité, la tension et la résistance interne d'une cellule.</li><li>Mesures à l'oscilloscope et au multimètre de précision.</li><li>Rédaction du rapport technique.</li></ul><h4>Technologies</h4><div class="tags"><span>Mesure</span><span>Instrumentation</span><span>Batterie</span></div><h4>Pièces du dossier</h4><p class="todo">Rapport technique : à déposer. Photos du projet à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d4"><h3>Robot suiveur de ligne</h3><p style="color:var(--mut);margin:0">SAÉ de S2 (février – avril 2026), menée en équipe à l'IUT de Montpellier-Sète.</p><p>Conception d'un robot analogique qui suit une ligne grâce à ses capteurs.</p><h4>Ce que j'ai fait</h4><ul><li>Conception d'un robot entièrement analogique.</li><li>Intégration et câblage des capteurs de ligne.</li><li>Réglages électroniques fins du suivi de trajectoire.</li><li>Tests sur prototype jusqu'à la validation finale.</li></ul><h4>Technologies</h4><div class="tags"><span>Robotique</span><span>Capteurs</span><span>Analogique</span></div><h4>Pièces du dossier</h4><p class="todo">Cahier des charges, relevés et rapport : à déposer.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d5"><h3>Enceinte connectée Bluetooth</h3><p style="color:var(--mut);margin:0">Projet tutoré de S3, en binôme avec Eddie Fisher, à l'IUT de Montpellier-Sète. En cours.</p><p>Enceinte Bluetooth d'environ 10 W, à base d'un ESP32 et d'un amplificateur intégré.</p><h4>Ce que j'ai fait</h4><ul><li>Conception de l'enceinte, en binôme.</li><li>Responsable de la protection contre l'inversion de polarité de l'alimentation.</li></ul><h4>Technologies</h4><div class="tags"><span>Alimentation</span><span>Amplificateur audio</span><span>KiCad</span></div><h4>Photos</h4><div class="gal"><img src="enceinte-esp32.jpg" alt="Le modèle de carte ESP32 utilisé pour l'enceinte." width="263" height="172"></div><p class="cap">Le modèle de carte ESP32 utilisé pour l'enceinte.</p><h4>Pièces du dossier</h4><p class="todo">Projet en cours : schémas et rapport à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d6"><h3>Testeur de batterie</h3><p style="color:var(--mut);margin:0">SAÉ de S1 (2025), à l'IUT de Montpellier-Sète.</p><p>Conception d'un testeur de cellules de batterie.</p><h4>Ce que j'ai fait</h4><ul><li>Conception d'un testeur mesurant la capacité, la tension et la résistance interne d'une cellule.</li><li>Mesures à l'oscilloscope et au multimètre de précision.</li><li>Rédaction du rapport technique.</li></ul><h4>Technologies</h4><div class="tags"><span>Mesure</span><span>Instrumentation</span><span>Batterie</span></div><h4>Photos</h4><div class="gal"><img src="testeur-batterie.jpg" alt="Le routage de la carte du testeur." width="265" height="219"></div><p class="cap">Le routage de la carte du testeur.</p><h4>Pièces du dossier</h4><p class="todo">Rapport technique : à déposer.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d7"><h3>Shield Moteur</h3><p style="color:var(--mut);margin:0">SAÉ de S3, en binôme, à l'IUT de Montpellier-Sète. En cours.</p><p>Ce shield se branche sur une carte Nucleo F303RE et permet de commander un moteur à courant continu, piloté par le bus CAN.</p><h4>Ce que j'ai fait</h4><ul><li>Conception du shield, en binôme.</li><li>Rédaction de la procédure de test de la carte.</li></ul><h4>Technologies</h4><div class="tags"><span>STM32 · Nucleo F303RE</span><span>Bus CAN</span><span>KiCad</span><span>Commande moteur</span></div><h4>Pièces du dossier</h4><p class="todo">Projet en cours : schémas, procédure de test et rapport à venir.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d8"><h3>Soudage de la carte Jipada</h3><p style="color:var(--mut);margin:0">Premier projet de BUT GEII, mené en binôme à l'IUT de Montpellier-Sète.</p><p>La carte Jipada sert de lien entre un microcontrôleur et différentes cartes filles. Ses LED affichent des informations, et ses interrupteurs et potentiomètres permettent de faire des réglages.</p><h4>Ce que j'ai fait</h4><ol><li>Contrôle de la continuité des pistes au multimètre, avant toute soudure.</li><li>Soudure de l'ensemble des composants.</li><li>Test des LED et des potentiomètres une fois la carte montée.</li></ol><p>Cette carte a ensuite servi dans d'autres projets, dont le capteur de température PT100.</p><h4>Outils utilisés</h4><div class="tags"><span>Multimètre</span><span>Poste à souder</span></div><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d9"><h3>Tracker de lumière</h3><p style="color:var(--mut);margin:0">Projet d'équipe mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Il s'agissait d'étudier le fonctionnement d'un tracker qui suit une source de lumière, d'écrire le programme qui le pilote, puis de présenter le travail à l'oral.</p><h4>Ce que j'ai fait</h4><ol><li>Étude du fonctionnement du tracker.</li><li>Écriture du programme de pilotage.</li><li>Présentation du travail à l'oral.</li></ol><h4>Compétences</h4><div class="tags"><span>Programmation</span><span>Analyse de système</span><span>Communication orale</span></div><h4>Photos</h4><div class="gal"><img src="tracker-lumiere.jpg" alt="Le tracker de lumière étudié." width="267" height="214"></div><p class="cap">Le tracker de lumière étudié.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d10"><h3>Transmission d'un mot de 4 bits</h3><p style="color:var(--mut);margin:0">Projet d'équipe mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Le but était de construire, sur une carte FPGA Altera DE10-Lite, un système capable de corriger une erreur de transmission sur un mot de 4 bits.</p><h4>Ce que j'ai fait</h4><ol><li>Simulation de la transmission : le mot est réglé avec 4 interrupteurs et affiché sur 4 LED.</li><li>Simulation d'une erreur : 4 autres interrupteurs permettent d'inverser le bit choisi.</li><li>Correction de l'erreur grâce au code de Hamming.</li></ol><h4>Outils utilisés</h4><div class="tags"><span>Quartus</span><span>LibreOffice</span><span>Altera DE10-Lite</span></div><h4>Photos</h4><div class="gal"><img src="carte-de10-lite.jpg" alt="La carte Altera DE10-Lite utilisée." width="267" height="194"></div><p class="cap">La carte Altera DE10-Lite utilisée.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d11"><h3>Capteur de température PT100</h3><p style="color:var(--mut);margin:0">Projet mené en binôme à l'IUT de Montpellier-Sète.</p><p>La tension fournie par une sonde PT100 ne peut pas être lue directement par un microcontrôleur. Il a donc fallu concevoir une carte fille qui la met en forme, puis afficher la température mesurée sur les LED de la carte Jipada.</p><h4>Ce que j'ai fait</h4><ul><li>Conception de la carte fille de mise en forme du signal, sous KiCad.</li><li>Programmation de l'affichage de la température sur les LED de la carte Jipada.</li></ul><h4>Outils utilisés</h4><div class="tags"><span>KiCad</span><span>STM32CubeIDE</span><span>Poste à souder</span><span>Multimètre</span><span>Oscilloscope</span><span>Notion</span></div><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d12"><h3>Commande de malaxeur</h3><p style="color:var(--mut);margin:0">Projet mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Il fallait créer, sous Control Expert, une interface pour commander un malaxeur : régler sa vitesse, son sens de rotation et sa position d'arrêt, et afficher la température.</p><h4>Ce que j'ai fait</h4><ul><li>Création de l'interface de commande sous Control Expert.</li><li>Commande de la vitesse, du sens de rotation et de la position d'arrêt.</li><li>Affichage de la température sur l'interface.</li></ul><h4>Outils utilisés</h4><div class="tags"><span>Control Expert</span></div><h4>Photos</h4><div class="gal"><img src="commande-malaxeur.jpg" alt="Le banc du malaxeur." width="150" height="280"></div><p class="cap">Le banc du malaxeur.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d13"><h3>Transmission infrarouge</h3><p style="color:var(--mut);margin:0">Projet d'équipe mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Une carte d'encodeur infrarouge ne fonctionnait pas. Les signaux ont été contrôlés un à un pour vérifier qu'ils correspondaient à ceux attendus, jusqu'à localiser la panne, puis le composant en cause a été remplacé.</p><h4>Ce que j'ai fait</h4><ol><li>Contrôle des signaux, étape par étape.</li><li>Localisation de la panne.</li><li>Remplacement du composant défectueux.</li></ol><h4>Outils utilisés</h4><div class="tags"><span>Oscilloscope</span><span>Multimètre</span></div><h4>Photos</h4><div class="gal"><img src="encodeur-infrarouge.jpg" alt="La carte d'encodeur infrarouge." width="209" height="209"></div><p class="cap">La carte d'encodeur infrarouge.</p><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
+<dialog id="d14"><h3>Installation électrique d'une habitation</h3><p style="color:var(--mut);margin:0">Projet mené en BUT GEII, à l'IUT de Montpellier-Sète.</p><p>Ce projet consistait à étudier le câblage électrique d'un logement, puis à vérifier s'il respectait la norme NF C 15-100. Les conclusions ont été présentées dans un rapport.</p><h4>Ce que j'ai fait</h4><ol><li>Étude du câblage électrique du logement.</li><li>Contrôle de sa conformité à la norme NF C 15-100.</li><li>Rédaction d'un rapport de conformité.</li></ol><h4>Outils utilisés</h4><div class="tags"><span>QElectroTech</span></div><p><button class="btn" style="margin-top:20px" onclick="this.closest('dialog').close()">Fermer</button></p></dialog>
 <script>
 (function(){
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -147,6 +200,24 @@ if('IntersectionObserver' in window&&!reduce){
     io.observe(el);
   });
 }else{els.forEach(function(el){el.classList.add('in');fin(el)})}
+
+/* Fenêtres : ouvrir en haut du dossier */
+document.querySelectorAll('dialog h3').forEach(function(h){h.tabIndex=-1;h.setAttribute('autofocus','')});
+
+/* Galeries : défilement automatique quand il y a plusieurs photos */
+document.querySelectorAll('.gal').forEach(function(g){
+  var im=g.querySelectorAll('img');if(!im.length)return;im[0].classList.add('on');
+  var cap=g.nextElementSibling&&g.nextElementSibling.classList.contains('cap')?g.nextElementSibling:null;
+  if(im.length<2)return;
+  var i=0,pause=false,dots=document.createElement('div');dots.className='dots';
+  function va(n){im[i].classList.remove('on');dots.children[i].classList.remove('on');i=(n+im.length)%im.length;
+    im[i].classList.add('on');dots.children[i].classList.add('on');if(cap)cap.textContent=im[i].alt}
+  im.forEach(function(x,k){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Photo '+(k+1));
+    b.onclick=function(){va(k)};dots.appendChild(b)});
+  dots.children[0].classList.add('on');g.appendChild(dots);
+  g.addEventListener('mouseenter',function(){pause=true});g.addEventListener('mouseleave',function(){pause=false});
+  if(!reduce)setInterval(function(){if(!pause&&g.offsetParent)va(i+1)},3500);
+});
 
 /* Oscilloscope : CH1 sinus, CH2 PWM dont le rapport cyclique varie */
 var cv=document.getElementById('scope');
@@ -185,17 +256,18 @@ function trace(f,col,t,sweep,carre){
 }
 function dessine(t,sweep){ctx.clearRect(0,0,W,H);grille();trace(sinus,C1,t,sweep,false);trace(pwm,C2,t,sweep,true);ctx.globalAlpha=1}
 size();
-if(reduce){dessine(1.2,null);window.addEventListener('resize',function(){size();dessine(1.2,null)});return}
+if(reduce){dessine(1.2,null);function fixe(){if(cv.clientWidth){size();dessine(1.2,null)}}window.addEventListener('resize',fixe);window.addEventListener('hashchange',fixe);return}
 var vis=true,raf=0,t0=performance.now();
 function boucle(now){
   var t=(now-t0)/1000,sweep=(t%PER)/PER*W*(1+GAP);
   dessine(t,sweep);raf=vis?requestAnimationFrame(boucle):0;
 }
 if('IntersectionObserver' in window){
-  new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(boucle)}).observe(cv);
+  new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&(cv.clientWidth!==W||cv.clientHeight!==H))size();if(vis&&!raf)raf=requestAnimationFrame(boucle)}).observe(cv);
 }
 raf=requestAnimationFrame(boucle);
 window.addEventListener('resize',size);
+window.addEventListener('hashchange',function(){if(cv.clientWidth&&cv.clientWidth!==W)size()});
 })();
 </script>
 </body></html>
